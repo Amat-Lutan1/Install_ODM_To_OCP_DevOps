@@ -5,7 +5,7 @@ pipeline {
         stage('Initialization') {
             steps {
                 echo 'Initialization'
-                bat 'oc projects'
+                bat 'oc project odm-sandbox'
             }
         }
     }
