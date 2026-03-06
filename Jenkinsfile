@@ -22,7 +22,7 @@ pipeline {
                  --from-file=tls.crt=certificates/entra_id_2.crt'
                 
                 sh 'oc delete secret microsoft-ecc-root-ca-tls --ignore-not-found'
-                sh 'oc create secret generic microsoft-ecc-root-ca-tls
+                sh 'oc create secret generic microsoft-ecc-root-ca-tls \
                  --from-file=tls.crt=certificates/microsoft-ecc-root-ca.crt'
                 sh 'oc delete secret microsoft-rsa-root-ca-tls --ignore-not-found'
                 sh 'oc create secret generic microsoft-rsa-root-ca-tls \
