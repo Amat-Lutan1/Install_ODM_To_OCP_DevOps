@@ -47,7 +47,8 @@ pipeline {
                 sh 'helm uninstall ibm-odm-prod --ignore-not-found'
                 sh 'helm install ibm-odm-prod ibm-helm/ibm-odm-prod \
                  --version 24.1.20 \
-                 -f charts/ibm-odm-prod/values.yaml'
+                 -f charts/ibm-odm-prod/values.yaml \
+                 --wait'
             }
         }
 
