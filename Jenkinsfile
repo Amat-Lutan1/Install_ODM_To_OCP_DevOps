@@ -63,7 +63,7 @@ pipeline {
                  --mount-path=/custom_config'
                 
                 sh '''oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
-                 -p '{"spec": {"template": {"spec": {"initContainers": [{"volumeMounts": [{"name": "custom-volume", "mountPath": "/custom_config" }]}]}}}}' \
+                 -p '{"spec": {"template": {"spec": {"initContainers": [{"volumeMounts": [{"mountPath": "/custom_config", "name": "custom-volume" }]}]}}}}' \
                  --type=strategic'''
             }
         }
