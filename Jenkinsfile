@@ -60,7 +60,7 @@ pipeline {
                  --add --name=custom-volume \
                  --containers=* \
                  --type=persistentVolumeClaim \
-                 --claim-name=custom-pvc'
+                 --claim-name=custom-pvc \
                  --mount-path=/custom_config'
                 
                 //sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
