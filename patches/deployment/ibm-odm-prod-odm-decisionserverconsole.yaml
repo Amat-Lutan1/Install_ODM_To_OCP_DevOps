@@ -1,14 +1,6 @@
 spec:
   template:
     spec:
-      initContainers:
-          volumeMounts:
-            - name: custom-volume
-              mountPath: /custom_config
-      containers:			  
-          volumeMounts:
-            - name: custom-volume
-              mountPath: /custom_config
       volumes:
         - name: custom-volume
           persistentVolumeClaim:
