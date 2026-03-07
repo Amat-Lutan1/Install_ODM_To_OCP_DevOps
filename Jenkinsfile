@@ -57,7 +57,7 @@ pipeline {
                 echo 'Finalization'
                 // update deployments
                 sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
-                 --patch-file patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml
+                 --patch-file patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml'
             }
         }
     }
