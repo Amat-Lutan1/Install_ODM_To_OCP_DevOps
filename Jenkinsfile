@@ -55,12 +55,19 @@ pipeline {
         stage('Finalization') {
             steps {
                 echo 'Finalization'
-                // update deployments to add custom config mounts
+                // update decision server console deployment to add custom config mount
                 sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverconsole --replicas=0'
                 sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
                  --patch-file=patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml \
                  --type=strategic'
                 sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverconsole --replicas=1'
+
+                // update decision server runtime deployment to add custom config mount
+                sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverruntime --replicas=0'
+                sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverruntime \
+                 --patch-file=patches/deployment/ibm-odm-prod-odm-decisionserverruntime.yaml \
+                 --type=strategic'
+                sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverruntime --replicas=1'                
             }
         }
     }
