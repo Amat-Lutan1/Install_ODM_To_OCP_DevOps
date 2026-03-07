@@ -56,19 +56,11 @@ pipeline {
             steps {
                 echo 'Finalization'
                 // update deployments to add custom config mounts
+                sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverconsole --replicas=0
                 sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
                  --patch-file=patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml \
                  --type=strategic'
-                
-                //sh 'oc set volume deployment/ibm-odm-prod-odm-decisionserverconsole \
-                // --add --name=custom-volume \
-                // --type=persistentVolumeClaim \
-                // --claim-name=custom-pvc \
-                // --mount-path=/custom_config'
-                
-                //sh '''oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
-                // -p '{"spec": {"template": {"spec": {"initContainers": [{"name": "init-folder-readonlyfs", "volumeMounts": [{"name": "custom-volume", "mountPath": "/custom_config" }]}]}}}}' \
-                // --type=strategic'''
+                sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverconsole --replicas=1
             }
         }
     }
