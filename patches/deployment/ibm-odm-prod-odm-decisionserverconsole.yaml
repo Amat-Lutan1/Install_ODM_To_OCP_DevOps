@@ -3,13 +3,5 @@ spec:
     spec:
       initContainers:
           volumeMounts:
-            - name: config-folder-emptydir
-              mountPath: /config-folder
-            - name: nssdb-folder-emptydir
-              mountPath: /nssdb-folder
-            - name: support-folder-emptydir
-              mountPath: /support-folder
             - name: custom-volume
-              mountPath: /custom_config
-            - name: custom-volume
-              mountPath: /custom_config
+              mountPath: custom_config
