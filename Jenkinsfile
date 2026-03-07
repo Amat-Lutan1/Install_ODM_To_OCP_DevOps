@@ -60,7 +60,7 @@ pipeline {
                 sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
                  --patch-file=patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml \
                  --type=strategic'
-                sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverconsole --replicas=1
+                sh 'oc scale deployment/ibm-odm-prod-odm-decisionserverconsole --replicas=1'
             }
         }
     }
