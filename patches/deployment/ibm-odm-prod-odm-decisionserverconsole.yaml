@@ -2,6 +2,16 @@ spec:
   template:
     spec:
       initContainers:
+          name: init-folder-readonlyfs	  	  
           volumeMounts:
             - name: custom-volume
-              mountPath: custom_config
+              mountPath: /custom_config
+      containers:
+          name: odm-decisionserverconsole  
+          volumeMounts:
+            - name: custom-volume
+              mountPath: /custom_config
+      volumes:
+        - name: custom-volume
+          persistentVolumeClaim:
+            claimName: custom-pvc
