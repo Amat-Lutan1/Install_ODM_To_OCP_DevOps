@@ -63,8 +63,8 @@ pipeline {
                  --claim-name=custom-pvc \
                  --mount-path=/custom_config'
                 
-                //sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
-                // --patch-file patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml'
+                sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
+                 --patch-file patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml'
             }
         }
     }
