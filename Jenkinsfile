@@ -57,8 +57,8 @@ pipeline {
                 echo 'Finalization'
                 // update deployments
                 sh 'oc patch deployment/ibm-odm-prod-odm-decisionserverconsole \
-                 --type merge \
-                 --patch-file patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml'
+                 --patch-file=patches/deployment/ibm-odm-prod-odm-decisionserverconsole.yaml' \
+                 --type=strategic'''
                 
                 //sh 'oc set volume deployment/ibm-odm-prod-odm-decisionserverconsole \
                 // --add --name=custom-volume \
