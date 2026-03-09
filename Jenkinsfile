@@ -22,8 +22,8 @@ pipeline {
                  --from-file=tls.crt=certificates/DigiCertGlobalRootG2.crt.pem'
                 
                 // create secret for Entra ID Web Security
-                sh 'oc delete secret entra-id-web-auth-secret --ignore-not-found'
-                sh 'oc create secret generic entra-id-web-auth-secret \
+                sh 'oc delete secret web-auth-secret --ignore-not-found'
+                sh 'oc create secret generic web-auth-secret \
                  --from-file=openIdParameters.properties=security/openIdParameters.properties \
                  --from-file=openIdWebSecurity.xml=security/openIdWebSecurity.xml \
                  --from-file=webSecurity.xml=security/webSecurity.xml'
