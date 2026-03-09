@@ -31,7 +31,7 @@ pipeline {
                 // create custom config app for mounting the custom config pvc
                 sh 'oc delete deployment custom-config-app'
                 sh 'oc apply -f deployment/custom-config-app.yaml'
-                sh '''oc wait --for=jsonpath='{.status.replicas}'=0 deployment/custom-config-app --timeout=300s'''
+                sh 'oc wait --for=condition=Ready pod -l run=custom-config-app --timeout=300s'
 
                 // copy custom configuration files for DSC and DSR to custom_config folder
                 sh '''CUSTOM_CONFIG_POD_NAME=$(oc get pods -o jsonpath='{.items[0].metadata.name}' --selector=run=custom-config-app)'''
