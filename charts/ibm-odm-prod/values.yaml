@@ -337,7 +337,7 @@ decisionServerRuntime:
   tolerations: null
   topologySpreadConstraints: []
   webConfigRef: null
-  xuConfigRef: null
+  xuConfigRef: ds-runtime-xu-configmap
 externalCustomDatabase:
   datasourceRef: customdatasource-secret
   driverPvc: null
