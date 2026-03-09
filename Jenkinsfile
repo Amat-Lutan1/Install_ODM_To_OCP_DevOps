@@ -28,6 +28,10 @@ pipeline {
                  --from-file=openIdWebSecurity.xml=security/openIdWebSecurity.xml \
                  --from-file=webSecurity.xml=security/webSecurity.xml'
 
+                // create secret for datasources
+                sh 'oc delete secret customdatasource-secret --ignore-not-found'
+                sh 'oc create secret generic customdatasource-secret --from-file datasource/datasource-ds.xml'
+
                 // create custom config app for mounting the custom config pvc
                 sh 'oc delete deployment custom-config-app'
                 sh 'oc apply -f deployment/custom-config-app.yaml'
