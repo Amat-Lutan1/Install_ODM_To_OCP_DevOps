@@ -36,6 +36,10 @@ pipeline {
                 sh 'oc create configmap dsc-jvm-options-configmap --from-file jvm_options/dsc-jvm-options'
                 sh 'oc create configmap dsr-jvm-options-configmap --from-file jvm_options/dsr-jvm-options'
 
+                // create xu config for Decision Server Runtime
+                sh 'oc delete configmap ds-runtime-xu-configmap --ignore-not-found'
+                sh 'oc create configmap ds-runtime-xu-configmap --from-file xu_config/ds-runtime-xu'
+                
                 // create custom config app for mounting the custom config pvc
                 sh 'oc delete deployment custom-config-app'
                 sh 'oc apply -f deployment/custom-config-app.yaml'
