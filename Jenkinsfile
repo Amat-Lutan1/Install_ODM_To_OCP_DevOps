@@ -17,6 +17,9 @@ pipeline {
                 sh 'oc delete secret ms-secret --ignore-not-found'
                 sh 'oc create secret generic ms-secret \
                  --from-file=tls.crt=certificates/microsoft.crt'
+                sh 'oc delete secret digicertg2-secret --ignore-not-found'
+                sh 'oc create secret generic digicertg2-secret \
+                 --from-file=tls.crt=certificates/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt.pem'                
                 sh 'oc delete secret digicert-secret --ignore-not-found'
                 sh 'oc create secret generic digicert-secret \
                  --from-file=tls.crt=certificates/DigiCertGlobalRootCA.crt.pem'
