@@ -84,7 +84,7 @@ pipeline {
                  --type=strategic'
 
                 // restart after changing the decision server console deployment
-                oc rollout restart deployment/ibm-odm-ds-prod-odm-decisionserverconsole
+                sh 'oc rollout restart deployment/ibm-odm-ds-prod-odm-decisionserverconsole'
 
                 // update decision server runtime deployment to add custom config mount
                 sh 'oc patch deployment/ibm-odm-ds-prod-odm-decisionserverruntime \
@@ -92,7 +92,7 @@ pipeline {
                  --type=strategic'
 
                 // restart after changing the decision server runtime deployment
-                oc rollout restart deployment/ibm-odm-ds-prod-odm-decisionserverruntime
+                sh 'oc rollout restart deployment/ibm-odm-ds-prod-odm-decisionserverruntime'
             }
         }
     }
