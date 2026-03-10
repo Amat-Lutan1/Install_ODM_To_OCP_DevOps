@@ -62,12 +62,12 @@ pipeline {
             }
         }
 
-        stage('Deploy ODM to OCP') {
+        stage('Deploy ODM Decision Server Console and Decision Server Runtime to OCP') {
             steps {
-                echo 'Deploy ODM to OCP'
+                echo 'Deploy ODM DSC & DSR to OCP'
                 // install ODM using helm chart
-                sh 'helm uninstall ibm-odm-prod-ds --ignore-not-found'
-                sh 'helm install ibm-odm-prod-ds ibm-helm/ibm-odm-prod \
+                sh 'helm uninstall ibm-odm-ds-prod --ignore-not-found'
+                sh 'helm install ibm-odm-ds-prod ibm-helm/ibm-odm-prod \
                  --version 24.1.20 \
                  -f charts/ibm-odm-prod/ds/values.yaml \
                  --wait \
