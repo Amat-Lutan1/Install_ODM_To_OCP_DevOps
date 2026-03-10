@@ -229,7 +229,7 @@ decisionServerConsole:
       requests:
         cpu: 200m
         memory: 100Mi
-  jvmOptionsRef: dsc-jvm-options-configmap
+  jvmOptionsRef: null
   labels: {}
   libertyHookRef: null
   lifecycleHooksSecretRef: null
@@ -301,7 +301,7 @@ decisionServerRuntime:
       requests:
         cpu: 200m
         memory: 100Mi
-  jvmOptionsRef: dsr-jvm-options-configmap
+  jvmOptionsRef: null
   labels: {}
   libertyHookRef: null
   lifecycleHooksSecretRef: null
@@ -337,9 +337,9 @@ decisionServerRuntime:
   tolerations: null
   topologySpreadConstraints: []
   webConfigRef: null
-  xuConfigRef: ds-runtime-xu-configmap
+  xuConfigRef: null
 externalCustomDatabase:
-  datasourceRef: customdatasource-secret
+  datasourceRef: null
   driverPvc: null
 externalDatabase:
   databaseName: 'postgres'
