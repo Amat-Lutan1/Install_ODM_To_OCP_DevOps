@@ -344,16 +344,16 @@ externalCustomDatabase:
 externalDatabase:
   databaseName: 'postgres'
   decisionCenter:
-    databaseName: 'postgres'
+    databaseName: ''
     driversUrl: []
-    password: 'postgres'
-    port: '5432'
+    password: ''
+    port: ''
     secretCredentials: ''
-    serverName: 'IBM-J8WGDY3'
+    serverName: ''
     sslSecretRef: null
-    type: 'postgres'
+    type: ''
     url: ''
-    user: 'postgres'
+    user: ''
   decisionServer:
     databaseName: 'postgres'
     driversUrl: []
