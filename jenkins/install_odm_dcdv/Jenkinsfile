@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Initialization') {
             steps {
@@ -21,6 +20,16 @@ pipeline {
                 sh 'oc create secret generic digicert-secret \
                  --from-file=tls.crt=certificates/DigiCertGlobalRootG2.crt.pem'
                 
+                // replace AZUREAD_CLIENT_SECRET with credentials
+                withCredentials([string(
+                    credentialsId: 'AZUREAD_CLIENT_SECRET',
+                    variable: 'AZUREAD_CLIENT_SECRET'
+                )]) {
+				    sh 'sed -i.bak "s|AZUREAD_CLIENT_SECRET|${AZUREAD_CLIENT_SECRET}|g" security/openIdParameters.properties'
+				    sh 'sed -i.bak "s|AZUREAD_CLIENT_SECRET|${AZUREAD_CLIENT_SECRET}|g" security/openIdWebSecurity.xml'
+				    sh 'sed -i.bak "s|AZUREAD_CLIENT_SECRET|${AZUREAD_CLIENT_SECRET}|g" security/OdmOidcProviders.json'
+                }
+
                 // create secret for Entra ID Web Security
                 sh 'oc delete secret web-auth-secret --ignore-not-found'
                 sh 'oc create secret generic web-auth-secret \
@@ -28,6 +37,14 @@ pipeline {
                  --from-file=openIdWebSecurity.xml=security/openIdWebSecurity.xml \
                  --from-file=webSecurity.xml=security/webSecurity.xml \
                  --from-file=OdmOidcProviders.json=security/OdmOidcProviders.json'
+
+                // replace DC_DB_PASSWORD_SECRET with credentials
+                withCredentials([string(
+                    credentialsId: 'DC_DB_PASSWORD_SECRET',
+                    variable: 'DC_DB_PASSWORD_SECRET'
+                )]) {
+				    sh 'sed -i.bak "s|DC_DB_PASSWORD_SECRET|${DC_DB_PASSWORD_SECRET}|g" datasource/datasource-dc.xml'
+                }
 
                 // create secret for datasources
                 sh 'oc delete secret dcdv-datasource-secret --ignore-not-found'
